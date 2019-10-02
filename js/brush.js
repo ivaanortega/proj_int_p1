@@ -78,10 +78,20 @@ class Brush{
           this.y -= this.speed;
           
         }
+        let marge = 60;
+        //Comprovem que no passi els limits de la pantalla, a més li afegim un marge per que sembli un 'lienzo'
+        if ((this.x + marge > width - this.ellipseW/2 || this.x - marge < this.ellipseW/2 )||
+              (this.y + marge > height - this.ellipseH/2 || this.y - marge < this.ellipseH/2 ))
+        {
+          this.transparency -= 5; //Si sobrepassa els limits, disinuim mes rapid la transparencia
+        }else{
+          
+          //El fem mes transparent a cada iteració
+          this.transparency -= 0.5;
+        }
         //Disminuim el temps de vida
         this.volta += 1;
-        //El fem mes transparent a cada iteració
-        this.transparency -= 0.5;
+        
       }
       
     }
@@ -89,14 +99,14 @@ class Brush{
       //Si no ha finalitzat, pintem el pinzell
       if(!this.finish()){
         noStroke();
-        fill(this.hue, 200, 200,this.transparency);
+        fill(this.hue, 200, 201,this.transparency);
         ellipse(this.x, this.y, this.ellipseW,this.ellipseH );
       }
       
     }
     finish(){
       //Comprovem si ha finalitzat
-      if(this.volta >= this.maxVolta || this.hide == 1){
+      if(this.volta >= this.maxVolta || this.hide == 1 || this.transparency <= 0){
         return true;
       }else{
         return false;
