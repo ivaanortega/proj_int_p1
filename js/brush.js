@@ -1,3 +1,18 @@
+/*
+  
+/////////////////////////////////
+  Brush Class
+  En aquesta classe definim totes les funcions que té el brush.
+  by: Ivan Ortega, Alejandro Ruiz
+/////////////////////////////////
+  
+  Print(); // Retorna un string amb la posició del pinzell
+  move(); // Determina la posició del pinzell a cada iteració, així com la seva transparència i mida
+  display(); // Pinta el pinzell
+  finish(); // Comprova si s'ha acabat el temps de vida del pinzell
+
+*/
+
 class Brush{
     constructor(x,y,up){
       this.x = x;
@@ -74,10 +89,8 @@ class Brush{
       //Si no ha finalitzat, pintem el pinzell
       if(!this.finish()){
         noStroke();
-        fill(this.hue, 200, 150,this.transparency);
+        fill(this.hue, 200, 200,this.transparency);
         ellipse(this.x, this.y, this.ellipseW,this.ellipseH );
-        noStroke();
-        fill(this.hue, 200, 0,360);
       }
       
     }
